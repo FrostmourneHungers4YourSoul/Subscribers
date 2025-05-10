@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="change-pk-notification" author="diablo">
+        <addColumn tableName="user_notifications">
+            <column name="uuid" type="UUID" defaultValueComputed="gen_random_uuid()"/>
+        </addColumn>
+
+        <dropPrimaryKey tableName="user_notifications"/>
+
+        <addPrimaryKey
+                tableName="user_notifications"
+                columnNames="uuid" />
+    </changeSet>
+</databaseChangeLog>

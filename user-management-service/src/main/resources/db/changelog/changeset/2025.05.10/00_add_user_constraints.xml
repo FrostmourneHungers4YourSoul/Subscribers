@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="add-user-constraints" author="diablo">
+        <addUniqueConstraint
+                tableName="users"
+                columnNames="username"
+                constraintName="uk_user_username"/>
+
+        <addUniqueConstraint
+                tableName="users"
+                columnNames="email"
+                constraintName="uk_user_email"/>
+
+        <update tableName="users">
+            <column name="role" value="USER"/>
+            <where>role IS NULL</where>
+        </update>
+
+        <update tableName="users">
+            <column name="preference" value="DEFAULT"/>
+            <where>preference IS NULL</where>
+        </update>
+
+        <addNotNullConstraint
+                tableName="users"
+                columnName="role"
+                columnDataType="VARCHAR(255)"/>
+
+        <addNotNullConstraint
+                tableName="users"
+                columnName="preference"
+                columnDataType="VARCHAR(255)"/>
+
+        <addDefaultValue
+                tableName="users"
+                columnName="role"
+                defaultValue="USER"/>
+
+        <addDefaultValue
+                tableName="users"
+                columnName="preference"
+                defaultValue="DEFAULT"/>
+    </changeSet>
+</databaseChangeLog>

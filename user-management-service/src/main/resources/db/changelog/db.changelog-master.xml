@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <preConditions>
+        <dbms type="postgresql"/>
+    </preConditions>
+
+    <changeSet id="init-schema" author="diablo" runAlways="false" runOnChange="false">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS subscribers_schema;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-users-table" author="diablo" runOnChange="false">
+        <sqlFile path="changeset/init/tables/create_tb_user.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="create-subscription-table" author="diablo" runOnChange="false">
+        <sqlFile path="changeset/init/tables/create_tb_subscription.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="create-content-table" author="diablo" runOnChange="false">
+        <sqlFile path="changeset/init/tables/create_tb_content.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="create-user-notifications-table" author="diablo" runOnChange="false">
+        <sqlFile path="changeset/init/tables/create_tb_user_notifications.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <include file="db/changelog/changeset/2025.05.10/00_add_user_constraints.xml"/>
+    <include file="db/changelog/changeset/2025.05.10/00_add_content_constraints.xml"/>
+    <include file="db/changelog/changeset/2025.05.10/00_change_pk_notification.xml"/>
+
+</databaseChangeLog>
