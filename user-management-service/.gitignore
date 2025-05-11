@@ -23,6 +23,11 @@ dist/
 .env
 .gitattributes
 mvnw.cmd
+.idea/
+.mvn/
+mvnw
+README.md
+
 
 # Unit test reports
 TEST*.xml
