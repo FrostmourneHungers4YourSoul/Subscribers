@@ -1,0 +1,35 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  application:
+    name: subscription-management-service
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:${DATABASE_URL:postgresql://localhost:5432/postgres}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+    hikari:
+      schema: ${DB_SCHEMA:public}
+      maximum-pool-size: 15
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: ${DB_SCHEMA:public}
+        format_sql: true
+    show-sql: false
+
+
+#  liquibase:
+#    change-log: classpath:/db/changelog/db.changelog-master.xml
+#    default-schema: ${DB_SCHEMA:public}
+#
+#logging:
+#  level:
+#    liquibase: INFO
+#    org.springframework: INFO

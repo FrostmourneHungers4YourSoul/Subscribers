@@ -1,0 +1,1327 @@
+Index: user-management-service/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n    <modelVersion>4.0.0</modelVersion>\n    <parent>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-parent</artifactId>\n        <version>3.4.5</version>\n        <relativePath/>\n    </parent>\n\n    <groupId>com.example</groupId>\n    <artifactId>user-management-service</artifactId>\n    <version>0.0.1-SNAPSHOT</version>\n    <name>user-management-service</name>\n\n    <properties>\n        <java.version>17</java.version>\n        <querydsl.version>5.0.0</querydsl.version>\n        <env.version>5.2.2</env.version>\n        <mapstruct.version>1.6.3</mapstruct.version>\n        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>\n    </properties>\n\n    <dependencies>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-data-jpa</artifactId>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-web</artifactId>\n        </dependency>\n\n        <dependency>\n            <groupId>org.liquibase</groupId>\n            <artifactId>liquibase-core</artifactId>\n        </dependency>\n\n        <dependency>\n            <groupId>org.postgresql</groupId>\n            <artifactId>postgresql</artifactId>\n            <scope>runtime</scope>\n        </dependency>\n\n        <dependency>\n            <groupId>org.projectlombok</groupId>\n            <artifactId>lombok</artifactId>\n            <optional>true</optional>\n        </dependency>\n        <dependency>\n            <groupId>org.projectlombok</groupId>\n            <artifactId>lombok-mapstruct-binding</artifactId>\n            <version>${lombok-mapstruct-binding.version}</version>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-test</artifactId>\n            <scope>test</scope>\n        </dependency>\n\n        <dependency>\n            <groupId>org.mapstruct</groupId>\n            <artifactId>mapstruct</artifactId>\n            <version>${mapstruct.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>org.mapstruct</groupId>\n            <artifactId>mapstruct-processor</artifactId>\n            <version>${mapstruct.version}</version>\n            <scope>provided</scope>\n        </dependency>\n\n        <dependency>\n            <groupId>com.querydsl</groupId>\n            <artifactId>querydsl-apt</artifactId>\n            <version>${querydsl.version}</version>\n            <classifier>jakarta</classifier>\n            <scope>provided</scope>\n        </dependency>\n        <dependency>\n            <groupId>com.querydsl</groupId>\n            <artifactId>querydsl-jpa</artifactId>\n            <classifier>jakarta</classifier>\n            <version>${querydsl.version}</version>\n        </dependency>\n\n        <dependency>\n            <groupId>io.github.cdimascio</groupId>\n            <artifactId>java-dotenv</artifactId>\n            <version>${env.version}</version>\n        </dependency>\n\n        <dependency>\n            <groupId>org.hibernate.validator</groupId>\n            <artifactId>hibernate-validator</artifactId>\n            <version>6.2.0.Final</version>\n        </dependency>\n        <dependency>\n            <groupId>org.glassfish</groupId>\n            <artifactId>javax.el</artifactId>\n            <version>3.0.0</version>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-actuator</artifactId>\n        </dependency>\n    </dependencies>\n\n    <build>\n        <plugins>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-compiler-plugin</artifactId>\n                <configuration>\n                    <compilerArgs>\n                        <arg>-Amapstruct.defaultComponentModel=spring</arg>\n                    </compilerArgs>\n                    <source>${java.version}</source>\n                    <target>${java.version}</target>\n                    <annotationProcessorPaths>\n                        <path>\n                            <groupId>org.mapstruct</groupId>\n                            <artifactId>mapstruct-processor</artifactId>\n                            <version>${mapstruct.version}</version>\n                        </path>\n                        <path>\n                            <groupId>org.projectlombok</groupId>\n                            <artifactId>lombok</artifactId>\n                            <version>${lombok.version}</version>\n                        </path>\n                        <path>\n                            <groupId>org.projectlombok</groupId>\n                            <artifactId>lombok-mapstruct-binding</artifactId>\n                            <version>${lombok-mapstruct-binding.version}</version>\n                        </path>\n                    </annotationProcessorPaths>\n                </configuration>\n            </plugin>\n            <plugin>\n                <groupId>org.springframework.boot</groupId>\n                <artifactId>spring-boot-maven-plugin</artifactId>\n                <configuration>\n                    <layers enabled=\"true\"/>\n                    <excludes>\n                        <exclude>\n                            <groupId>org.projectlombok</groupId>\n                            <artifactId>lombok</artifactId>\n                        </exclude>\n                    </excludes>\n                </configuration>\n                <executions>\n                    <execution>\n                        <goals>\n                            <goal>repackage</goal> <!-- fat-jar -->\n                        </goals>\n                    </execution>\n                </executions>\n            </plugin>\n            <plugin>\n                <groupId>com.mysema.maven</groupId>\n                <artifactId>apt-maven-plugin</artifactId>\n                <version>1.1.3</version>\n                <executions>\n                    <execution>\n                        <goals>\n                            <goal>process</goal>\n                        </goals>\n                        <configuration>\n                            <outputDirectory>target/generated-sources/java</outputDirectory>\n                            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>\n                        </configuration>\n                    </execution>\n                </executions>\n            </plugin>\n        </plugins>\n    </build>\n\n</project>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/user-management-service/pom.xml b/user-management-service/pom.xml
+--- a/user-management-service/pom.xml	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
++++ b/user-management-service/pom.xml	(date 1746994867401)
+@@ -3,21 +3,18 @@
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+     <parent>
+-        <groupId>org.springframework.boot</groupId>
+-        <artifactId>spring-boot-starter-parent</artifactId>
+-        <version>3.4.5</version>
+-        <relativePath/>
++        <groupId>com.example.sss</groupId>
++        <artifactId>simple-streaming-service</artifactId>
++        <version>0.0.1-SNAPSHOT</version>
+     </parent>
+ 
+-    <groupId>com.example</groupId>
+     <artifactId>user-management-service</artifactId>
+-    <version>0.0.1-SNAPSHOT</version>
++    <version>0.0.1</version>
+     <name>user-management-service</name>
+ 
+     <properties>
+         <java.version>17</java.version>
+         <querydsl.version>5.0.0</querydsl.version>
+-        <env.version>5.2.2</env.version>
+         <mapstruct.version>1.6.3</mapstruct.version>
+         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+     </properties>
+@@ -85,12 +82,6 @@
+             <classifier>jakarta</classifier>
+             <version>${querydsl.version}</version>
+         </dependency>
+-
+-        <dependency>
+-            <groupId>io.github.cdimascio</groupId>
+-            <artifactId>java-dotenv</artifactId>
+-            <version>${env.version}</version>
+-        </dependency>
+ 
+         <dependency>
+             <groupId>org.hibernate.validator</groupId>
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+deleted file mode 100644
+--- a/.idea/vcs.xml	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
++++ /dev/null	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
+@@ -1,7 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="" vcs="Git" />
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+deleted file mode 100644
+--- a/.idea/jarRepositories.xml	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
++++ /dev/null	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RemoteRepositoriesConfiguration">
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Central Repository" />
+-      <option name="url" value="https://repo.maven.apache.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Maven Central repository" />
+-      <option name="url" value="https://repo1.maven.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="jboss.community" />
+-      <option name="name" value="JBoss Community repository" />
+-      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+-    </remote-repository>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
++++ /dev/null	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
+@@ -1,10 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+-# Datasource local storage ignored files
+-/dataSources/
+-/dataSources.local.xml
+-# Environment-dependent path to Maven home directory
+-/mavenHomeManager.xml
+-# Editor-based HTTP Client requests
+-/httpRequests/
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
++++ /dev/null	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/Subscribers.iml" filepath="$PROJECT_DIR$/.idea/Subscribers.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+deleted file mode 100644
+--- a/.idea/compiler.xml	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
++++ /dev/null	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
+@@ -1,23 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="CompilerConfiguration">
+-    <annotationProcessing>
+-      <profile name="Annotation profile for spring-user-management-service" enabled="true">
+-        <sourceOutputDir name="target/generated-sources/annotations" />
+-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+-        <outputRelativeToContentRoot value="true" />
+-        <processorPath useClasspath="false">
+-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+-        </processorPath>
+-      </profile>
+-    </annotationProcessing>
+-    <bytecodeTargetLevel>
+-      <module name="spring-user-management-service" target="17" />
+-    </bytecodeTargetLevel>
+-  </component>
+-  <component name="JavacSettings">
+-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+-      <module name="spring-user-management-service" options="-parameters" />
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+deleted file mode 100644
+--- a/.idea/encodings.xml	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
++++ /dev/null	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="Encoding">
+-    <file url="file://$PROJECT_DIR$/spring-user-management-service/src/main/java" charset="UTF-8" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+--- a/.idea/misc.xml	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
++++ /dev/null	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
+@@ -1,14 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="MavenProjectsManager">
+-    <option name="originalFiles">
+-      <list>
+-        <option value="$PROJECT_DIR$/spring-user-managment-service/pom.xml" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-23" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/out" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/Subscribers.iml
+===================================================================
+diff --git a/.idea/Subscribers.iml b/.idea/Subscribers.iml
+deleted file mode 100644
+--- a/.idea/Subscribers.iml	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
++++ /dev/null	(revision 58a421ce6a3530c9122afc19369c9647a95e0341)
+@@ -1,9 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="JAVA_MODULE" version="4">
+-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+-    <exclude-output />
+-    <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="inheritedJdk" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-  </component>
+-</module>
+\ No newline at end of file
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/ContentRequest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/ContentRequest.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/ContentRequest.java
+new file mode 100644
+--- /dev/null	(date 1746995255573)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/ContentRequest.java	(date 1746995255573)
+@@ -0,0 +1,18 @@
++package com.example.subscriptiontservice.dto.request;
++
++import com.example.subscriptiontservice.model.enums.ContentType;
++import jakarta.validation.constraints.NotNull;
++
++import java.util.UUID;
++
++public record ContentRequest
++        (
++                @NotNull
++                String name,
++                @NotNull
++                ContentType type,
++                String description,
++                @NotNull
++                UUID subscriptionUuid
++        ) {
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/SubscriptionRequest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/SubscriptionRequest.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/SubscriptionRequest.java
+new file mode 100644
+--- /dev/null	(date 1746994673378)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/SubscriptionRequest.java	(date 1746994673378)
+@@ -0,0 +1,14 @@
++package com.example.subscriptiontservice.dto.request;
++
++import jakarta.validation.constraints.NotNull;
++import jakarta.validation.constraints.Size;
++
++public record SubscriptionRequest
++        (
++                @NotNull
++                @Size(max = 255)
++                String name,
++                Double price
++        ) {
++
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/UserRequest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/UserRequest.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/UserRequest.java
+new file mode 100644
+--- /dev/null	(date 1746995255503)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/UserRequest.java	(date 1746995255503)
+@@ -0,0 +1,24 @@
++package com.example.subscriptiontservice.dto.request;
++
++import com.example.subscriptiontservice.model.enums.ContentType;
++import com.example.subscriptiontservice.model.enums.Role;
++import jakarta.validation.constraints.NotNull;
++import jakarta.validation.constraints.Size;
++
++public record UserRequest
++        (
++                @NotNull
++                @Size(min = 4, max = 255)
++                String username,
++
++                @NotNull
++                @Size(min = 4, max = 255)
++                String email,
++
++                @NotNull
++                @Size(min = 4, max = 255)
++                String password,
++                ContentType preference,
++                Role role
++        ) {
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/SubscriptionController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/SubscriptionController.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/SubscriptionController.java
+new file mode 100644
+--- /dev/null	(date 1746994752272)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/SubscriptionController.java	(date 1746994752272)
+@@ -0,0 +1,37 @@
++package com.example.subscriptiontservice.controller;
++
++
++import com.example.subscriptiontservice.dto.request.SubscriptionRequest;
++import com.example.subscriptiontservice.dto.response.SubscriptionResponse;
++import com.example.subscriptiontservice.dto.response.SubscriptionTopResponse;
++import com.example.subscriptiontservice.service.SubscriptionService;
++import jakarta.validation.Valid;
++import lombok.RequiredArgsConstructor;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.GetMapping;
++import org.springframework.web.bind.annotation.PostMapping;
++import org.springframework.web.bind.annotation.RequestBody;
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.RestController;
++
++import java.util.List;
++
++@RestController
++@RequestMapping("api/v1/subscriptions")
++@RequiredArgsConstructor
++public class SubscriptionController {
++
++    private final SubscriptionService subService;
++
++    @GetMapping("/top")
++    public ResponseEntity<List<SubscriptionTopResponse>> getTopSubscriptions() {
++        List<SubscriptionTopResponse> subResponseSet = subService.getTop3Service();
++        return ResponseEntity.ok(subResponseSet);
++    }
++
++    @PostMapping
++    public ResponseEntity<SubscriptionResponse> createSubscription(
++            @RequestBody @Valid SubscriptionRequest subRequest) {
++        return ResponseEntity.ok(subService.create(subRequest));
++    }
++}
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+new file mode 100644
+--- /dev/null	(date 1747151982178)
++++ b/pom.xml	(date 1747151982178)
+@@ -0,0 +1,51 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <modelVersion>4.0.0</modelVersion>
++
++    <parent>
++        <groupId>org.springframework.boot</groupId>
++        <artifactId>spring-boot-starter-parent</artifactId>
++        <version>3.4.5</version>
++    </parent>
++
++    <groupId>com.example.sss</groupId>
++    <artifactId>simple-streaming-service</artifactId>
++    <version>0.0.1-SNAPSHOT</version>
++    <packaging>pom</packaging>
++    <name>${project.artifactId}</name>
++
++    <modules>
++        <module>user-management-service</module>
++        <module>subscription-management-service</module>
++    </modules>
++
++    <properties>
++        <java.version>17</java.version>
++    </properties>
++
++    <dependencyManagement>
++        <dependencies>
++            <dependency>
++                <groupId>org.springframework.ai</groupId>
++                <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
++                <version>1.0.0-M4</version>
++            </dependency>
++        </dependencies>
++    </dependencyManagement>
++
++    <build>
++        <pluginManagement>
++            <plugins>
++                <plugin>
++                    <groupId>org.apache.maven.plugins</groupId>
++                    <artifactId>maven-compiler-plugin</artifactId>
++                </plugin>
++                <plugin>
++                    <groupId>org.springframework.boot</groupId>
++                    <artifactId>spring-boot-maven-plugin</artifactId>
++                </plugin>
++            </plugins>
++        </pluginManagement>
++    </build>
++</project>
+Index: subscription-management-service/docker-compose.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/docker-compose.yaml b/subscription-management-service/docker-compose.yaml
+new file mode 100644
+--- /dev/null	(date 1746991727066)
++++ b/subscription-management-service/docker-compose.yaml	(date 1746991727066)
+@@ -0,0 +1,15 @@
++services:
++  subscription-service-db:
++    image: postgres:17.4-alpine
++    container_name: subscription-service-db
++    environment:
++      POSTGRES_USER: postgres
++      POSTGRES_PASSWORD: postgres
++      POSTGRES_DB: postgres
++    volumes:
++      - postgres_data:/var/lib/postgresql/data
++    ports:
++      - "5432:5432"
++
++volumes:
++  postgres_data:
+Index: subscription-management-service/.env
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/.env b/subscription-management-service/.env
+new file mode 100644
+--- /dev/null	(date 1746991927602)
++++ b/subscription-management-service/.env	(date 1746991927602)
+@@ -0,0 +1,5 @@
++DATABASE_URL=postgresql://localhost:5432/postgres
++DATABASE_USERNAME=devil
++DATABASE_PASSWORD=83224
++DB_SCHEMA=public
++SERVER_PORT=9094
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/handler/GlobalExceptionHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/handler/GlobalExceptionHandler.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/handler/GlobalExceptionHandler.java
+new file mode 100644
+--- /dev/null	(date 1746995255589)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/handler/GlobalExceptionHandler.java	(date 1746995255589)
+@@ -0,0 +1,31 @@
++package com.example.subscriptiontservice.controller.handler;
++
++import com.example.subscriptiontservice.dto.Message;
++import com.example.subscriptiontservice.exception.ResourceNotFoundException;
++import org.springframework.http.HttpStatus;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.ControllerAdvice;
++import org.springframework.web.bind.annotation.ExceptionHandler;
++
++@ControllerAdvice
++public class GlobalExceptionHandler {
++
++    @ExceptionHandler(ResourceNotFoundException.class)
++    public ResponseEntity<Message> handleResourceNotFound(ResourceNotFoundException exception) {
++        Message message = new Message(exception.getMessage());
++        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
++    }
++
++    @ExceptionHandler(IllegalArgumentException.class)
++    public ResponseEntity<Message> handleIllegalArgumentException(IllegalArgumentException ex) {
++        Message message = new Message(ex.getMessage());
++        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
++    }
++
++    @ExceptionHandler(Exception.class)
++    public ResponseEntity<Message> handleGeneralException(Exception exception) {
++        Message message = new Message("Unexpected error: " + exception.getMessage());
++        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message);
++    }
++}
++
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/event/SubscriptionEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/event/SubscriptionEvent.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/event/SubscriptionEvent.java
+new file mode 100644
+--- /dev/null	(date 1746995255597)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/event/SubscriptionEvent.java	(date 1746995255597)
+@@ -0,0 +1,22 @@
++package com.example.subscriptiontservice.event;
++
++import com.example.subscriptiontservice.dto.Message;
++import com.example.subscriptiontservice.model.Subscription;
++import com.example.subscriptiontservice.model.User;
++import lombok.Getter;
++import org.springframework.context.ApplicationEvent;
++
++@Getter
++public class SubscriptionEvent extends ApplicationEvent {
++
++    private final User user;
++    private final Subscription subscription;
++    private final String message;
++
++    public SubscriptionEvent(Object source, User user, Subscription subscription, Message message) {
++        super(source);
++        this.user = user;
++        this.subscription = subscription;
++        this.message = message.message();
++    }
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/event/NotificationEventListener.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/event/NotificationEventListener.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/event/NotificationEventListener.java
+new file mode 100644
+--- /dev/null	(date 1746995255523)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/event/NotificationEventListener.java	(date 1746995255523)
+@@ -0,0 +1,51 @@
++package com.example.subscriptiontservice.event;
++
++import com.example.subscriptiontservice.model.Notification;
++import com.example.subscriptiontservice.model.Subscription;
++import com.example.subscriptiontservice.model.User;
++import lombok.RequiredArgsConstructor;
++import lombok.extern.slf4j.Slf4j;
++import org.springframework.stereotype.Component;
++import org.springframework.transaction.annotation.Propagation;
++import org.springframework.transaction.annotation.Transactional;
++import org.springframework.transaction.event.TransactionalEventListener;
++
++import java.time.LocalDateTime;
++import java.util.concurrent.ThreadLocalRandom;
++
++import static org.springframework.transaction.event.TransactionPhase.AFTER_COMMIT;
++
++@Slf4j
++@Component
++@RequiredArgsConstructor
++public class NotificationEventListener {
++
++
++    @Transactional(propagation = Propagation.REQUIRES_NEW)
++    @TransactionalEventListener(phase = AFTER_COMMIT)
++    public void handleSubscriberEvent(SubscriptionEvent event) {
++        log.info("Received Subscription Event for user UUID: {}", event.getUser().getUuid());
++        try {
++            User user = event.getUser();
++            Subscription subscription = event.getSubscription();
++            String message = event.getMessage();
++
++            log.debug("Creating notification for user: {}, subscription: {}, message: {}",
++                    user.getUuid(), subscription.getName(), message);
++
++            Notification notification = Notification.builder()
++                    .target(user.getUuid())
++                    .publisher(subscription.getName())
++                    .message(message)
++                    .isRead(false)
++                    .dateCreated(LocalDateTime.now()
++                            .plusNanos(ThreadLocalRandom.current().nextInt(1000)))
++                    .build();
++
++            user.getNotifications().add(notification);
++        } catch (Exception e) {
++            log.error("Failed to process Subscription Event for user UUID: {}. Error: {}",
++                    event.getUser().getUuid(), e.getMessage(), e);
++        }
++    }
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/ContentType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/ContentType.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/ContentType.java
+new file mode 100644
+--- /dev/null	(date 1746994560218)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/ContentType.java	(date 1746994560218)
+@@ -0,0 +1,8 @@
++package com.example.subscriptiontservice.model.enums;
++
++public enum ContentType {
++    MOVIE,
++    MUSIC,
++    PODCASTS,
++    DEFAULT
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/Role.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/Role.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/Role.java
+new file mode 100644
+--- /dev/null	(date 1746994560193)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/Role.java	(date 1746994560193)
+@@ -0,0 +1,6 @@
++package com.example.subscriptiontservice.model.enums;
++
++public enum Role {
++    USER,
++    CONTENT_MAKER
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Content.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Content.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Content.java
+new file mode 100644
+--- /dev/null	(date 1746995255603)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Content.java	(date 1746995255603)
+@@ -0,0 +1,52 @@
++package com.example.subscriptiontservice.model;
++
++import com.example.subscriptiontservice.model.enums.ContentType;
++import jakarta.persistence.Column;
++import jakarta.persistence.Entity;
++import jakarta.persistence.EnumType;
++import jakarta.persistence.Enumerated;
++import jakarta.persistence.GeneratedValue;
++import jakarta.persistence.GenerationType;
++import jakarta.persistence.Id;
++import jakarta.persistence.JoinColumn;
++import jakarta.persistence.ManyToOne;
++import jakarta.persistence.Table;
++import lombok.AllArgsConstructor;
++import lombok.EqualsAndHashCode;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import lombok.ToString;
++import org.hibernate.annotations.CreationTimestamp;
++
++import java.time.LocalDateTime;
++import java.util.UUID;
++
++@Getter
++@Setter
++@AllArgsConstructor
++@NoArgsConstructor
++@EqualsAndHashCode
++@ToString
++@Entity
++@Table(name = "content")
++public class Content {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.UUID)
++    private UUID uuid;
++    private String name;
++
++    @Enumerated(EnumType.STRING)
++    private ContentType type = ContentType.DEFAULT;
++
++    @CreationTimestamp
++    @Column(name = "date_created")
++    private LocalDateTime dateCreated;
++
++    private String description;
++
++    @ManyToOne
++    @JoinColumn(name = "subscription_uuid")
++    private Subscription subscription;
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Notification.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Notification.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Notification.java
+new file mode 100644
+--- /dev/null	(date 1746994560184)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Notification.java	(date 1746994560184)
+@@ -0,0 +1,38 @@
++package com.example.subscriptiontservice.model;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Embeddable;
++import lombok.AllArgsConstructor;
++import lombok.Builder;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import org.hibernate.annotations.CreationTimestamp;
++
++import java.time.LocalDateTime;
++import java.util.UUID;
++
++
++@Getter
++@Setter
++@Builder
++@AllArgsConstructor
++@NoArgsConstructor
++@Embeddable
++public class Notification {
++
++    @Column(name = "target", insertable = false, updatable = false)
++    private UUID target;
++
++    private String publisher;
++
++    private String message;
++
++    @Column(name = "read")
++    private Boolean isRead;
++
++    @CreationTimestamp
++    @Column(name = "date_created")
++    private LocalDateTime dateCreated;
++
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Subscription.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Subscription.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Subscription.java
+new file mode 100644
+--- /dev/null	(date 1746995255538)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Subscription.java	(date 1746995255538)
+@@ -0,0 +1,71 @@
++package com.example.subscriptiontservice.model;
++
++import com.example.subscriptiontservice.model.Content;
++import com.example.subscriptiontservice.model.User;
++import jakarta.persistence.CascadeType;
++import jakarta.persistence.Entity;
++import jakarta.persistence.FetchType;
++import jakarta.persistence.GeneratedValue;
++import jakarta.persistence.GenerationType;
++import jakarta.persistence.Id;
++import jakarta.persistence.ManyToMany;
++import jakarta.persistence.OneToMany;
++import jakarta.persistence.Table;
++import lombok.AllArgsConstructor;
++import lombok.Builder;
++import lombok.EqualsAndHashCode;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import lombok.ToString;
++import org.hibernate.annotations.BatchSize;
++import org.hibernate.annotations.DynamicInsert;
++
++import java.util.ArrayList;
++import java.util.HashSet;
++import java.util.List;
++import java.util.Set;
++import java.util.UUID;
++
++@Getter
++@Setter
++@AllArgsConstructor
++@NoArgsConstructor
++@EqualsAndHashCode
++@ToString
++@DynamicInsert
++@Builder
++@Entity
++@Table(name = "subscription")
++public class Subscription {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.UUID)
++    private UUID uuid;
++    private String name;
++    private Double price;
++
++    @Builder.Default
++    @BatchSize(size = 15)
++    @OneToMany(
++            mappedBy = "subscription",
++            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
++            fetch = FetchType.EAGER
++    )
++    private List<Content> contents = new ArrayList<>();
++
++    @Builder.Default
++    @BatchSize(size = 15)
++    @ManyToMany(mappedBy = "subscriptions", fetch = FetchType.EAGER)
++    private Set<User> subscribers = new HashSet<>();
++
++    public void addContent(Content content) {
++        contents.add(content);
++        content.setSubscription(this);
++    }
++
++    public void removeContent(Content content) {
++        contents.remove(content);
++        content.setSubscription(null);
++    }
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/model/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/User.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/User.java
+new file mode 100644
+--- /dev/null	(date 1746995255565)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/User.java	(date 1746995255565)
+@@ -0,0 +1,82 @@
++package com.example.subscriptiontservice.model;
++
++import com.example.subscriptiontservice.model.Notification;
++import com.example.subscriptiontservice.model.enums.ContentType;
++import com.example.subscriptiontservice.model.enums.Role;
++import jakarta.persistence.CascadeType;
++import jakarta.persistence.CollectionTable;
++import jakarta.persistence.ElementCollection;
++import jakarta.persistence.Entity;
++import jakarta.persistence.EnumType;
++import jakarta.persistence.Enumerated;
++import jakarta.persistence.FetchType;
++import jakarta.persistence.GeneratedValue;
++import jakarta.persistence.GenerationType;
++import jakarta.persistence.Id;
++import jakarta.persistence.JoinColumn;
++import jakarta.persistence.JoinTable;
++import jakarta.persistence.ManyToMany;
++import jakarta.persistence.Table;
++import lombok.AllArgsConstructor;
++import lombok.EqualsAndHashCode;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import lombok.ToString;
++import org.hibernate.annotations.BatchSize;
++import org.hibernate.annotations.DynamicInsert;
++
++import java.util.ArrayList;
++import java.util.HashSet;
++import java.util.List;
++import java.util.Set;
++import java.util.UUID;
++
++@Getter
++@Setter
++@AllArgsConstructor
++@NoArgsConstructor
++@EqualsAndHashCode
++@ToString
++@DynamicInsert
++@Entity
++@Table(name = "users")
++public class User {
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.UUID)
++    private UUID uuid;
++
++    private String username;
++    private String email;
++    private String password;
++
++    @Enumerated(EnumType.STRING)
++    private ContentType preference = ContentType.DEFAULT;
++
++    @Enumerated(EnumType.STRING)
++    private Role role = Role.USER;
++
++    @BatchSize(size = 15)
++    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
++            fetch = FetchType.EAGER)
++    @JoinTable(
++            name = "users_subscriptions",
++            joinColumns = @JoinColumn(name = "user_uuid"),
++            inverseJoinColumns = @JoinColumn(name = "subscription_uuid")
++    )
++    @EqualsAndHashCode.Exclude
++    @ToString.Exclude
++    private Set<Subscription> subscriptions = new HashSet<>();
++
++    @BatchSize(size = 15)
++    @ElementCollection(fetch = FetchType.EAGER)
++    @CollectionTable(
++            name = "user_notifications",
++            joinColumns = @JoinColumn(name = "target")
++    )
++    @EqualsAndHashCode.Exclude
++    @ToString.Exclude
++    private List<Notification> notifications = new ArrayList<>();
++
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/mapper/SubscriptionMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/mapper/SubscriptionMapper.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/mapper/SubscriptionMapper.java
+new file mode 100644
+--- /dev/null	(date 1746995255548)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/mapper/SubscriptionMapper.java	(date 1746995255548)
+@@ -0,0 +1,38 @@
++package com.example.subscriptiontservice.mapper;
++
++import com.example.subscriptiontservice.dto.request.SubscriptionRequest;
++import com.example.subscriptiontservice.dto.response.SubscriptionResponse;
++import com.example.subscriptiontservice.dto.response.SubscriptionTopResponse;
++import com.example.subscriptiontservice.model.Subscription;
++import com.example.subscriptiontservice.model.User;
++import org.mapstruct.IterableMapping;
++import org.mapstruct.Mapper;
++import org.mapstruct.Mapping;
++import org.mapstruct.NullValuePropertyMappingStrategy;
++
++import java.util.List;
++import java.util.Set;
++
++@Mapper(
++        componentModel = "spring",
++        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
++)
++public interface SubscriptionMapper {
++
++    @Mapping(target = "uuid", ignore = true)
++    @Mapping(target = "subscribers", ignore = true)
++    @Mapping(target = "contents", ignore = true)
++    Subscription toSubscription(SubscriptionRequest request);
++
++    SubscriptionResponse toSubscriptionResponse(Subscription subscription);
++
++    @Mapping(target = "subscribers", source = "subscription.subscribers")
++    SubscriptionTopResponse toSubscriptionTopResponse(Subscription subscription);
++
++    @IterableMapping(elementTargetType = SubscriptionResponse.class)
++    List<SubscriptionTopResponse> toSubscriptionResponseSet(List<Subscription> subscriptions);
++
++    default int map(Set<User> value) {
++        return value.size();
++    }
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/exception/ResourceNotFoundException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/exception/ResourceNotFoundException.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/exception/ResourceNotFoundException.java
+new file mode 100644
+--- /dev/null	(date 1746994459521)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/exception/ResourceNotFoundException.java	(date 1746994459521)
+@@ -0,0 +1,7 @@
++package com.example.subscriptiontservice.exception;
++
++public class ResourceNotFoundException extends RuntimeException {
++    public ResourceNotFoundException(String message) {
++        super(message);
++    }
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/repository/SubscriptionRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/repository/SubscriptionRepository.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/repository/SubscriptionRepository.java
+new file mode 100644
+--- /dev/null	(date 1746995255609)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/repository/SubscriptionRepository.java	(date 1746995255609)
+@@ -0,0 +1,13 @@
++package com.example.subscriptiontservice.repository;
++
++import com.example.subscriptiontservice.model.Subscription;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++import java.util.Optional;
++import java.util.UUID;
++
++@Repository
++public interface SubscriptionRepository extends JpaRepository<Subscription, UUID> {
++    Optional<Subscription> findByName(String name);
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/service/SubscriptionService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/service/SubscriptionService.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/service/SubscriptionService.java
+new file mode 100644
+--- /dev/null	(date 1746995255580)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/service/SubscriptionService.java	(date 1746995255580)
+@@ -0,0 +1,29 @@
++package com.example.subscriptiontservice.service;
++
++import com.example.subscriptiontservice.dto.Message;
++import com.example.subscriptiontservice.dto.request.SubscriptionRequest;
++import com.example.subscriptiontservice.dto.response.SubscriptionResponse;
++import com.example.subscriptiontservice.dto.response.SubscriptionTopResponse;
++import com.example.subscriptiontservice.model.Content;
++import com.example.subscriptiontservice.model.Subscription;
++import com.example.subscriptiontservice.model.User;
++
++import java.util.List;
++import java.util.UUID;
++
++public interface SubscriptionService {
++
++    SubscriptionResponse create(SubscriptionRequest request);
++
++    Subscription getSubscriptionByUuid(UUID uuid);
++
++    List<SubscriptionTopResponse> getTop3Service();
++
++    Subscription getSubscriptionByName(SubscriptionRequest subRequest);
++
++    void addContentToSubscription(UUID uuid, Content content);
++
++    Message addSubscriber(SubscriptionRequest subRequest, User user);
++
++    Message removeSubscriber(UUID uuid, User user);
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/service/impl/SubscriptionServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/service/impl/SubscriptionServiceImpl.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/service/impl/SubscriptionServiceImpl.java
+new file mode 100644
+--- /dev/null	(date 1746995255514)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/service/impl/SubscriptionServiceImpl.java	(date 1746995255514)
+@@ -0,0 +1,136 @@
++package com.example.subscriptiontservice.service.impl;
++
++import com.example.subscriptiontservice.dto.Message;
++import com.example.subscriptiontservice.dto.request.SubscriptionRequest;
++import com.example.subscriptiontservice.dto.response.SubscriptionResponse;
++import com.example.subscriptiontservice.dto.response.SubscriptionTopResponse;
++import com.example.subscriptiontservice.event.SubscriptionEvent;
++import com.example.subscriptiontservice.exception.ResourceNotFoundException;
++import com.example.subscriptiontservice.mapper.SubscriptionMapper;
++import com.example.subscriptiontservice.model.Content;
++import com.example.subscriptiontservice.model.QSubscription;
++import com.example.subscriptiontservice.model.Subscription;
++import com.example.subscriptiontservice.model.User;
++import com.example.subscriptiontservice.model.enums.ContentType;
++import com.example.subscriptiontservice.repository.SubscriptionRepository;
++import com.example.subscriptiontservice.service.SubscriptionService;
++import com.querydsl.jpa.impl.JPAQueryFactory;
++import lombok.RequiredArgsConstructor;
++import lombok.extern.slf4j.Slf4j;
++import org.springframework.context.ApplicationEventPublisher;
++import org.springframework.stereotype.Service;
++import org.springframework.transaction.annotation.Propagation;
++import org.springframework.transaction.annotation.Transactional;
++
++import java.util.List;
++import java.util.Optional;
++import java.util.UUID;
++
++@Slf4j
++@Service
++@RequiredArgsConstructor
++public class SubscriptionServiceImpl implements SubscriptionService {
++
++    private final JPAQueryFactory queryFactory;
++    private final SubscriptionRepository subRepository;
++    private final SubscriptionMapper subMapper;
++    private final ApplicationEventPublisher eventPublisher;
++
++    @Transactional
++    @Override
++    public SubscriptionResponse create(SubscriptionRequest request) {
++        Subscription subscription = subMapper.toSubscription(request);
++        subscription = subRepository.save(subscription);
++        return subMapper.toSubscriptionResponse(subscription);
++    }
++
++    @Override
++    public Subscription getSubscriptionByUuid(UUID uuid) {
++        return subRepository.findById(uuid).orElseThrow(() ->
++                new ResourceNotFoundException("Subscription: " + uuid + " not found."));
++    }
++
++    @Transactional(readOnly = true)
++    @Override
++    public List<SubscriptionTopResponse> getTop3Service() {
++        QSubscription subscription = QSubscription.subscription;
++
++        List<Subscription> subscriptions = queryFactory
++                .selectFrom(subscription)
++                .where(subscription.subscribers.size().gt(0))
++                .orderBy(subscription.subscribers.size().desc())
++                .limit(3)
++                .fetch();
++
++        log.info("Retrieved {} subscriptions for top 3", subscriptions.size());
++        return subMapper.toSubscriptionResponseSet(subscriptions);
++    }
++
++    @Transactional(propagation = Propagation.MANDATORY)
++    @Override
++    public Subscription getSubscriptionByName(SubscriptionRequest subRequest) {
++        Optional<Subscription> subscription = subRepository.findByName(subRequest.name());
++        if (subscription.isEmpty()) {
++            log.info("Subscription by name: {} not found.", subRequest.name());
++            Subscription sub = Subscription.builder()
++                    .name(subRequest.name())
++                    .price(subRequest.price())
++                    .build();
++            sub = subRepository.save(sub);
++            log.info("Created subscription: {}", sub.getUuid());
++            return sub;
++        }
++        return subscription.get();
++    }
++
++    @Transactional
++    public Message addSubscriber(SubscriptionRequest subRequest, User user) {
++        Subscription subscription = getSubscriptionByName(subRequest);
++
++        if (user.getSubscriptions().contains(subscription)) {
++            throw new IllegalArgumentException("User is already subscribed.");
++        }
++        user.getSubscriptions().add(subscription);
++
++        Message message = new Message("You are successfully subscribed to " + subscription.getName());
++        eventPublisher.publishEvent(new SubscriptionEvent(this, user, subscription, message));
++        return message;
++    }
++
++    @Transactional
++    public Message removeSubscriber(UUID uuid, User user) {
++        Subscription subscription = getSubscriptionByUuid(uuid);
++        user.getSubscriptions().remove(subscription);
++
++        Message message = new Message("You are unsubscribed from " + subscription.getName());
++
++        eventPublisher.publishEvent(new SubscriptionEvent(this, user, subscription, message));
++        return message;
++    }
++
++
++    @Transactional
++    public void addContentToSubscription(UUID subscriptionUuid, Content content) {
++        Subscription subscription = subRepository.findById(subscriptionUuid)
++                .orElseThrow(() -> new ResourceNotFoundException("Subscription " + subscriptionUuid + " not found"));
++
++        subscription.addContent(content);
++        subscription = subRepository.save(subscription);
++
++
++        for (User user : subscription.getSubscribers()) {
++            if (user.getPreference() == content.getType()
++                || user.getPreference() == ContentType.DEFAULT) {
++                contentNotification(user, subscription, content);
++            }
++        }
++    }
++
++    //Notify user about new content
++    private void contentNotification(User user, Subscription subscription, Content content) {
++        Message message = new Message("New content in " + subscription.getName()
++                                      + ": " + content.getName()
++                                      + "\n  " + content.getDescription());
++        eventPublisher.publishEvent(new SubscriptionEvent(this, user, subscription, message));
++    }
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/ContentResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/ContentResponse.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/ContentResponse.java
+new file mode 100644
+--- /dev/null	(date 1746995255530)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/ContentResponse.java	(date 1746995255530)
+@@ -0,0 +1,20 @@
++package com.example.subscriptiontservice.dto.response;
++
++import com.example.subscriptiontservice.model.enums.ContentType;
++import com.fasterxml.jackson.annotation.JsonFormat;
++
++import java.time.LocalDateTime;
++import java.util.UUID;
++
++public record ContentResponse
++        (
++                UUID uuid,
++                String name,
++                ContentType type,
++
++                @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
++                LocalDateTime dateCreated,
++                String description,
++                UUID subscriptionUuid
++        ) {
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/NotificationResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/NotificationResponse.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/NotificationResponse.java
+new file mode 100644
+--- /dev/null	(date 1746995255556)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/NotificationResponse.java	(date 1746995255556)
+@@ -0,0 +1,19 @@
++package com.example.subscriptiontservice.dto.response;
++
++import com.example.subscriptiontservice.dto.Message;
++import com.fasterxml.jackson.annotation.JsonFormat;
++
++import java.time.LocalDateTime;
++import java.util.UUID;
++
++public record NotificationResponse
++        (
++                UUID target,
++                String publisher,
++                boolean isRead,
++
++                @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
++                LocalDateTime dateCreated,
++                Message message
++        ) {
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionResponse.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionResponse.java
+new file mode 100644
+--- /dev/null	(date 1746994673357)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionResponse.java	(date 1746994673357)
+@@ -0,0 +1,12 @@
++package com.example.subscriptiontservice.dto.response;
++
++import java.util.UUID;
++
++public record SubscriptionResponse
++        (
++                UUID uuid,
++                String name,
++                Double price
++        ) {
++
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionTopResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionTopResponse.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionTopResponse.java
+new file mode 100644
+--- /dev/null	(date 1746994673385)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionTopResponse.java	(date 1746994673385)
+@@ -0,0 +1,11 @@
++package com.example.subscriptiontservice.dto.response;
++
++import java.util.UUID;
++
++public record SubscriptionTopResponse
++        (
++                UUID uuid,
++                String name,
++                int subscribers
++        ) {
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/UserResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/UserResponse.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/UserResponse.java
+new file mode 100644
+--- /dev/null	(date 1746995255614)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/UserResponse.java	(date 1746995255614)
+@@ -0,0 +1,16 @@
++package com.example.subscriptiontservice.dto.response;
++
++import com.example.subscriptiontservice.model.enums.ContentType;
++import com.example.subscriptiontservice.model.enums.Role;
++
++import java.util.UUID;
++
++public record UserResponse
++        (
++                UUID uuid,
++                String username,
++                String email,
++                ContentType preference,
++                Role role
++        ) {
++}
+Index: subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/Message.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/Message.java b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/Message.java
+new file mode 100644
+--- /dev/null	(date 1746994673347)
++++ b/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/Message.java	(date 1746994673347)
+@@ -0,0 +1,4 @@
++package com.example.subscriptiontservice.dto;
++
++public record Message(String message) {
++}

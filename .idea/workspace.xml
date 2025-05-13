@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e394251d-c8c4-4e85-8298-4bc8529838cf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/SubscriptionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/controller/handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/ContentRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/SubscriptionRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/request/UserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/ContentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/NotificationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/SubscriptionTopResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/dto/response/UserResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/event/NotificationEventListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/event/SubscriptionEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/mapper/SubscriptionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Content.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/Subscription.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/ContentType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/model/enums/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/repository/SubscriptionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/service/SubscriptionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice/service/impl/SubscriptionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Subscribers.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-management-service/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;FrostmourneHungers4YourSoul&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/FrostmourneHungers4YourSoul/Subscribers.git&quot;,
+    &quot;accountId&quot;: &quot;6ae19eca-d65e-4ca4-a6ee-d119163d04e8&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="explicitlyEnabledProfiles" value="native,nativeTest" />
+  </component>
+  <component name="MavenRunner">
+    <option name="delegateBuildToMaven" value="true" />
+    <option name="jreName" value="17" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2wjClc5WvOSM1RExFdxPCfpvbEu" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.UserManagementServiceApp.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.simple-streaming-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.simple-streaming-service [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.simple-streaming-service [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.subscription-management-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.subscription-management-service [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.user-management-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.user-management-service [compile].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.SubscriptionManagementServiceApp.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserManagementServiceApp (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserManagementServiceApp.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/diablo/IdeaProjects/Subscribers&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.31094757&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.splitter.proportion&quot;: &quot;0.23809524&quot;,
+    &quot;two.files.diff.last.used.folder&quot;: &quot;/home/diablo/IdeaProjects/Subscribers&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.idea" />
+      <recent name="$PROJECT_DIR$/subscription-management-service/src/main/java/com/example/subscriptiontservice" />
+      <recent name="$PROJECT_DIR$/subscription-management-service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.subscriptiontservice.controller" />
+      <recent name="com.example.subscriptiontservice.service.impl" />
+      <recent name="com.example.subscriptiontservice.service" />
+      <recent name="com.example.subscriptiontservice.repository" />
+      <recent name="com.example.subscriptiontservice.model" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SubscriptionManagementServiceApp">
+    <configuration name="UserManagementServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.userservice.UserManagementServiceApp" />
+      <module name="user-management-service" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserManagementServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.userservice.UserManagementServiceApp" />
+      <module name="user-management-service" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubscriptionManagementServiceApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="envFilePaths">
+        <option value="$PROJECT_DIR$/subscription-management-service/.env" />
+      </option>
+      <module name="subscription-management-service" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.subscriptiontservice.SubscriptionManagementServiceApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubscriptionManagementServiceApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="envFilePaths">
+        <option value="$PROJECT_DIR$/subscription-management-service/.env" />
+      </option>
+      <module name="subscription-management-service" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.subscriptiontservice.SubscriptionManagementServiceApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserManagementServiceApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="envFilePaths">
+        <option value="$PROJECT_DIR$/user-management-service/.env" />
+      </option>
+      <module name="user-management-service" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.userservice.UserManagementServiceApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserManagementServiceApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="envFilePaths">
+        <option value="$PROJECT_DIR$/user-management-service/.env" />
+      </option>
+      <module name="user-management-service" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.userservice.UserManagementServiceApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.UserManagementServiceApp" />
+      <item itemvalue="Spring Boot.SubscriptionManagementServiceApp" />
+      <item itemvalue="Spring Boot.UserManagementServiceApp" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.UserManagementServiceApp" />
+        <item itemvalue="Application.UserManagementServiceApp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e394251d-c8c4-4e85-8298-4bc8529838cf" name="Changes" comment="" />
+      <created>1746545747211</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746545747211</updated>
+      <workItem from="1746545748323" duration="1314000" />
+      <workItem from="1746988460108" duration="1919000" />
+      <workItem from="1746990402293" duration="5101000" />
+      <workItem from="1747077097019" duration="173000" />
+      <workItem from="1747077279738" duration="40000" />
+      <workItem from="1747077325320" duration="24000" />
+      <workItem from="1747077382187" duration="1544000" />
+      <workItem from="1747078965959" duration="25000" />
+      <workItem from="1747079056044" duration="1034000" />
+      <workItem from="1747080118276" duration="310000" />
+      <workItem from="1747080437207" duration="1154000" />
+      <workItem from="1747150924136" duration="317000" />
+      <workItem from="1747151250303" duration="74000" />
+      <workItem from="1747151400775" duration="369000" />
+      <workItem from="1747151777404" duration="70000" />
+      <workItem from="1747151857171" duration="156000" />
+      <workItem from="1747152024777" duration="1053000" />
+      <workItem from="1747157066062" duration="21000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
